@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Cutsom Hooks</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+        }
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border: 3px solid #000000;
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555555;
+        }
+        .container {
+            max-width: 100%;
+            width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .header {
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            letter-spacing: -0.5px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .card {
+            background-color: #121212;
+            border: 1px solid #2c2c2c;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .card:hover {
+            border-color: #444444;
+        }
+        .image-container {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        .title {
+            font-size: 0.9rem;
+            color: #cccccc;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+            line-height: 1.4;
+        }
+        .skeleton-card {
+            background-color: #121212;
+            border: 1px solid #2c2c2c;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .skeleton-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: #1a1a1a;
+            animation: pulse 1.5s infinite ease-in-out;
+            margin-bottom: 16px;
+        }
+        .skeleton-title {
+            height: 14px;
+            width: 80%;
+            background-color: #1a1a1a;
+            animation: pulse 1.5s infinite ease-in-out;
+            border-radius: 2px;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.6; }
+        }
+        .error-container {
+            text-align: center;
+            padding: 40px;
+            background-color: #1a1a1a;
+            border: 1px solid #ff4a4a;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: 50px auto;
+        }
+        .error-title {
+            color: #ff4a4a;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .error-message {
+            color: #cccccc;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        .btn {
+            background-color: #ffffff;
+            color: #0b0c10;
+            border: none;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .btn:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const useFetch = (url) => {
+            const [data, setData] = React.useState(null);
+            const [loading, setLoading] = React.useState(true);
+            const [error, setError] = React.useState(null);
+            const fetchData = React.useCallback(async () => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch photos from the server");
+                    }
+                    const result = await response.json();
+                    setData(result);
+                } catch (err) {
+                    setError(err.message);
+                } finally {
+                    setLoading(false);
+                }
+            }, [url]);
+            React.useEffect(() => {
+                fetchData();
+            }, [fetchData]);
+            return { data, loading, error };
+        };
+
+        const ImageWithFallback = ({ url, alt }) => {
+            const [isError, setIsError] = React.useState(false);
+            if (isError) {
+                const hex = url.split('/').pop();
+                const isLight = ["92c952", "24f355", "b0f7cc"].includes(hex);
+                return (
+                    <div style={{
+                        width: "100%",
+                        aspectRatio: "1/1",
+                        backgroundColor: `#${hex}`,
+                        color: isLight ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "16px",
+                        fontWeight: "normal",
+                        fontFamily: "sans-serif",
+                        userSelect: "none"
+                    }}>
+                        600 x 600
+                    </div>
+                );
+            }
+            return (
+                <img
+                    src={url}
+                    alt={alt}
+                    onError={() => setIsError(true)}
+                    style={{
+                        width: "100%",
+                        aspectRatio: "1/1",
+                        display: "block",
+                        objectFit: "cover"
+                    }}
+                />
+            );
+        };
+
+        const App = () => {
+            const { data, loading, error } = useFetch("https://jsonplaceholder.typicode.com/photos");
+            if (loading) {
+                return (
+                    <div className="container">
+                        <h1 className="header">Photos</h1>
+                        <div className="grid">
+                            {Array.from({ length: 12 }).map((_, i) => (
+                                <div key={i} className="skeleton-card">
+                                    <div className="skeleton-image"></div>
+                                    <div className="skeleton-title"></div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
+            }
+            if (error) {
+                return (
+                    <div className="container">
+                        <div className="error-container">
+                            <h2 className="error-title">Error Loading Photos</h2>
+                            <p className="error-message">{error}</p>
+                            <button className="btn" onClick={() => window.location.reload()}>Try Again</button>
+                        </div>
+                    </div>
+                );
+            }
+            const photos = data ? data.slice(0, 52) : [];
+            return (
+                <div className="container">
+                    <h1 className="header">Photos</h1>
+                    <div className="grid">
+                        {photos.map(photo => (
+                            <div key={photo.id} className="card">
+                                <div className="image-container">
+                                    <ImageWithFallback url={photo.url} alt={photo.title} />
+                                </div>
+                                <div className="title">{photo.title}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+</body>
+</html>
