@@ -6,6 +6,6 @@
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Student",
+  "author": "Divyansh",
   "license": "ISC"
 }
