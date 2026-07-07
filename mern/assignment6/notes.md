@@ -1,0 +1,3 @@
+- Got EADDRINUSE on port 3000, old process was still running. Switched to port 3001.
+- First tried writing HTML with sections/classes, mentor said too polished, rewrote with plain tags.
+- Forgot Content-Type: text/css for style.css at first, CSS wasn't loading, added the route.
