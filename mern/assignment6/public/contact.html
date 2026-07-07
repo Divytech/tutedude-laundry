@@ -1,61 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Laundry Mart</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Contact - Laundry Mart</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <div class="nav-container">
-            <a href="/home" class="logo">Laundry Mart</a>
-            <ul class="nav-links">
-                <li><a href="/home">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact" class="active">Contact</a></li>
-            </ul>
-        </div>
-    </header>
-    <main>
-        <section class="contact-container">
-            <div class="contact-info">
-                <h2>Get In Touch</h2>
-                <p style="margin-bottom: 30px; color: #5f6368;">Have a question about our pricing, pickup areas, or express laundry? Fill out the form or contact us directly.</p>
-                <div class="info-item">
-                    <h4>Call Us</h4>
-                    <p>+91 98765 43210</p>
-                </div>
-                <div class="info-item">
-                    <h4>Email Us</h4>
-                    <p>support@laundrymart.com</p>
-                </div>
-                <div class="info-item">
-                    <h4>Address</h4>
-                    <p>123 Clean Street, Sector 4, New Delhi, India</p>
-                </div>
-            </div>
-            <div class="contact-form">
-                <form onsubmit="event.preventDefault(); alert('Thank you for contacting us! We will reach out to you shortly.'); this.reset();">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
-                </form>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Laundry Mart. All rights reserved.</p>
-    </footer>
+
+    <h1>Laundry Mart</h1>
+
+    <hr>
+
+    <a href="/home">Home</a> |
+    <a href="/about">About</a> |
+    <a href="/contact">Contact</a>
+
+    <hr>
+
+    <h2>Contact Us</h2>
+
+    <p>If you have any questions, you can contact us.</p>
+
+    <p><b>Phone:</b> +91 98765 43210</p>
+    <p><b>Email:</b> support@laundrymart.com</p>
+    <p><b>Address:</b> 123 Clean Street, New Delhi</p>
+
+    <h3>Send a Message</h3>
+
+    <form>
+        <label>Name:</label><br>
+        <input type="text"><br><br>
+
+        <label>Email:</label><br>
+        <input type="email"><br><br>
+
+        <label>Message:</label><br>
+        <textarea rows="5" cols="30"></textarea><br><br>
+
+        <input type="submit" value="Send">
+    </form>
+
+    <hr>
+
+    <p>© 2026 Laundry Mart</p>
+
 </body>
 </html>
