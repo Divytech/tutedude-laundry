@@ -1,3 +1,7 @@
-- Got EADDRINUSE on port 3000, old process was still running. Switched to port 3001.
-- First tried writing HTML with sections/classes, mentor said too polished, rewrote with plain tags.
-- Forgot Content-Type: text/css for style.css at first, CSS wasn't loading, added the route.
+# Problems Faced
+
+- At first, I got an **EADDRINUSE** error because port **3000** was already being used. I changed the server to run on **port 3001**, and it worked.
+
+- My first version of the HTML pages had too many classes and sections. It looked more advanced than required, so I simplified the pages using basic HTML tags.
+
+- The CSS was not loading at first because I forgot to set the **Content-Type** to `text/css` in the server. After adding the correct route and header, the stylesheet loaded properly.
