@@ -1,58 +1,34 @@
-# Laundry Services Web Application
+# Laundry Services Website
 
-A simple web application for booking laundry services. Users can choose services, add them to a cart, and submit a booking request.
+## About
 
-This project helped me practice JavaScript, HTML, CSS, and working with an API.
+I made this project using HTML, Tailwind CSS and JavaScript.
 
-## Features
+The website lets the user:
 
-- **Add to Cart:** Users can add laundry services to the cart.
-- **Remove from Cart:** Users can remove services from the cart anytime.
-- **Total Price:** The total price updates automatically when items are added or removed.
-- **Form Validation:** Users must fill in all required details and add at least one service before submitting.
-- **EmailJS Integration:** After booking, the application sends a confirmation email with the user's details, selected services, and total amount.
-- **Responsive Design:** The website works on mobile, tablet, and desktop screens.
-- **Success & Error Messages:** Shows simple messages on the page instead of browser alerts.
+- View laundry services
+- Add or remove services
+- See the total amount
+- Fill the booking form
+- Send booking details using EmailJS
 
-## Setup Instructions
+## How to Run
 
-1. Download or clone the project.
-2. Open `assignment4.html` in your browser.
-
-### EmailJS Setup
-
-1. Create a free account on **EmailJS**.
-2. Add an email service (like Gmail).
-3. Create an email template.
-4. Use these variables in the template:
-   - `{{from_name}}`
-   - `{{user_email}}`
-   - `{{phone_number}}`
-   - `{{total_amount}}`
-   - `{{services}}`
-5. Copy your:
-   - Public Key
-   - Service ID
-   - Template ID
-6. Open `assignment4.html`.
-7. Replace:
-   - `YOUR_PUBLIC_KEY`
-   - `YOUR_SERVICE_ID`
-   - `YOUR_TEMPLATE_ID`
-8. Save the file and refresh the browser.
-
-Now you can test the booking and email feature.
+1. Download the files.
+2. Open assignment4.html in the browser.
+3. Replace the EmailJS Service ID, Template ID and Public Key with your own values.
+4. Save the file.
+5. Test the booking form.
 
 ## What I Learned
 
-From this project, I learned how to:
+This assignment helped me understand:
 
-- Use JavaScript to add and remove items from a cart.
-- Update the total price automatically.
-- Validate form inputs before submission.
-- Store cart data in an array.
-- Use functions to update the webpage.
-- Connect my project with EmailJS to send emails.
-- Handle API responses using `.then()`.
-- Make a simple responsive website using Tailwind CSS.
-```
+- Arrays
+- Loops
+- DOM manipulation
+- Functions
+- Cart management
+- Using EmailJS to send form data
+
+While making this project I also learned how different JavaScript functions work together to update the webpage after every action.
