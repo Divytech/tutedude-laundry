@@ -16,7 +16,7 @@ function App() {
       <h1>Products</h1>
 
       <div className="grid">
-        {data.slice(0, 20).map(product => (
+        {data.slice(0, 50).map(product => (
           <div className="card" key={product.id}>
             <img src={product.images[0]} alt={product.title} />
             <h3>{product.title}</h3>
