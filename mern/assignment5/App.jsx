@@ -3,14 +3,20 @@ function App() {
     "https://api.escuelajs.co/api/v1/products"
   );
 
-  if (loading) return <h2 className="message">Loading...</h2>;
-  if (error) return <h2 className="message">Error loading products</h2>;
+  if (loading) {
+    return <h2 className="message">Loading products...</h2>;
+  }
+
+  if (error) {
+    return <h2 className="message error">Error: {error}</h2>;
+  }
 
   return (
     <div className="container">
       <h1>Products</h1>
+
       <div className="grid">
-        {data.slice(0, 10).map(product => (
+        {data.slice(0, 20).map(product => (
           <div className="card" key={product.id}>
             <img src={product.images[0]} alt={product.title} />
             <h3>{product.title}</h3>

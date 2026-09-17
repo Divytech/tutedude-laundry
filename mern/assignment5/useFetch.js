@@ -4,9 +4,14 @@ function useFetch(url) {
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
+    setLoading(true);
+    setError(null);
+
     fetch(url)
       .then(res => {
-        if (!res.ok) throw new Error("Failed to fetch data");
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
         return res.json();
       })
       .then(result => {
@@ -14,7 +19,7 @@ function useFetch(url) {
         setLoading(false);
       })
       .catch(err => {
-        setError(err);
+        setError(err.message);
         setLoading(false);
       });
   }, [url]);

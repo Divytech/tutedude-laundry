@@ -14,9 +14,9 @@ https://api.escuelajs.co/api/v1/products
 
 `useFetch.js` contains the custom hook.
 
-`App.jsx` uses the hook to fetch product data and displays the first 10 products.
+`App.jsx` uses the hook to fetch product data and displays 20 products.
 
-The application shows a loading message while the data is being fetched and an error message if the request fails.
+The application shows a loading message while data is being fetched and an error message if the request fails.
 
 ## What I Learned
 
