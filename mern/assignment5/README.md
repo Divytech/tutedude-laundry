@@ -1,21 +1,14 @@
-# React Custom Hooks - Task 5
+# Task 5 - React Custom Hooks
 
-## Project Overview
+## Overview
 
 This project demonstrates a simple custom React hook called `useFetch`.
 
-The hook fetches data from an API and manages the data, loading, and error states.
+The hook takes a URL, fetches data from the API, and returns:
 
-## Requirements Covered
-
-- Created a custom hook named `useFetch`
-- Hook accepts a URL
-- Fetches data using `fetch()`
-- Returns `data`, `loading`, and `error`
-- Uses `useState` and `useEffect`
-- Created a React component that uses the hook
-- Displays API data
-- Added simple CSS styling
+- `data`
+- `loading`
+- `error`
 
 ## API Used
 
@@ -23,28 +16,28 @@ https://jsonplaceholder.typicode.com/photos
 
 ## How It Works
 
-The `useFetch` hook receives a URL.
+`useFetch.js` contains the custom hook.
 
-When the URL is available, `useEffect` runs the API request. The response is converted to JSON and stored in the `data` state.
+`App.jsx` uses the hook to fetch photos and displays the first 10 results.
 
-While the request is running, `loading` is true. If the request fails, the error is stored in the `error` state.
-
-The `App` component uses these values to show loading, error, or photo data.
+The application also shows a loading message while the data is being fetched and an error message if the request fails.
 
 ## What I Learned
 
-I learned how custom hooks can be used to reuse logic in React.
-
-I also learned how to use `useState` for storing API data and state, and `useEffect` for running the API request when the component loads.
+- How to create a custom React hook.
+- How `useState` stores data, loading and error states.
+- How `useEffect` runs the API request.
+- How to use a custom hook inside a React component.
+- How to handle loading and error states.
 
 ## Setup
 
-This project uses React through CDN, so no npm installation is required.
+No npm installation is required.
 
-1. Download the project.
-2. Open `index.html` in a browser.
-3. Keep an internet connection enabled because React and the API are loaded online.
+Open `index.html` in a browser.
 
-## Submission
+The project uses React and Babel through CDN links.
 
-Deploy this project on Netlify and upload the project to GitHub.
+## Deployment
+
+The project can be deployed on Netlify as a static website.

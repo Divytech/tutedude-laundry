@@ -1,45 +1,41 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 0;
-    padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 20px;
 }
 
 .container {
-    max-width: 900px;
-    margin: auto;
+  max-width: 900px;
+  margin: auto;
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .card {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
 }
 
 .card img {
-    width: 100%;
-}
-
-.card p {
-    margin-bottom: 0;
+  width: 100%;
 }
 
 .message {
-    text-align: center;
+  text-align: center;
 }
 
 @media (max-width: 600px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
