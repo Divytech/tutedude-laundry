@@ -2,31 +2,27 @@
 
 ## Overview
 
-This project demonstrates a simple custom React hook called `useFetch`.
+This project demonstrates a custom React hook called `useFetch`.
 
-The hook takes a URL, fetches data from the API, and returns:
-
-- `data`
-- `loading`
-- `error`
+The hook accepts a URL, fetches data from the API, and returns `data`, `loading`, and `error`.
 
 ## API Used
 
-https://jsonplaceholder.typicode.com/photos
+https://api.escuelajs.co/api/v1/products
 
 ## How It Works
 
 `useFetch.js` contains the custom hook.
 
-`App.jsx` uses the hook to fetch photos and displays the first 10 results.
+`App.jsx` uses the hook to fetch product data and displays the first 10 products.
 
-The application also shows a loading message while the data is being fetched and an error message if the request fails.
+The application shows a loading message while the data is being fetched and an error message if the request fails.
 
 ## What I Learned
 
 - How to create a custom React hook.
-- How `useState` stores data, loading and error states.
-- How `useEffect` runs the API request.
+- How `useState` is used for data, loading, and error states.
+- How `useEffect` is used to fetch data.
 - How to use a custom hook inside a React component.
 - How to handle loading and error states.
 

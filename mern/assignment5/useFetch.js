@@ -4,33 +4,19 @@ function useFetch(url) {
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    let isMounted = true;
-    setLoading(true);
-    setError(null);
-
     fetch(url)
       .then(res => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch data");
-        }
+        if (!res.ok) throw new Error("Failed to fetch data");
         return res.json();
       })
       .then(result => {
-        if (isMounted) {
-          setData(result);
-          setLoading(false);
-        }
+        setData(result);
+        setLoading(false);
       })
       .catch(err => {
-        if (isMounted) {
-          setError(err);
-          setLoading(false);
-        }
+        setError(err);
+        setLoading(false);
       });
-
-    return () => {
-      isMounted = false;
-    };
   }, [url]);
 
   return { data, loading, error };
