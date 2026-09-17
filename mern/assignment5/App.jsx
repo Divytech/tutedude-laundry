@@ -1,15 +1,14 @@
-const { useFetch } = window;
-
 function App() {
-    const { data, loading, error } =
-        useFetch("https://jsonplaceholder.typicode.com/photos");
+    const { data, loading, error } = useFetch(
+        "https://jsonplaceholder.typicode.com/photos"
+    );
 
     if (loading) {
-        return <h2>Loading...</h2>;
+        return <h2 className="message">Loading...</h2>;
     }
 
     if (error) {
-        return <h2>Error loading photos</h2>;
+        return <h2 className="message">Error loading photos</h2>;
     }
 
     return (

@@ -6,6 +6,8 @@ function useFetch(url) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        setLoading(true);
+
         fetch(url)
             .then(res => {
                 if (!res.ok) {
@@ -13,8 +15,8 @@ function useFetch(url) {
                 }
                 return res.json();
             })
-            .then(data => {
-                setData(data);
+            .then(result => {
+                setData(result);
                 setLoading(false);
             })
             .catch(err => {
